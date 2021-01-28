@@ -1,10 +1,10 @@
 # RecipeHelp
 Need help with dinner ideas? Get it here
 
-Alexander Spory
-MSSA CAD
-January 23, 2021
-Project Step 2
+Alexander Spory--:
+MSSA CAD--:
+January 23, 2021--:
+Project Step 2--:
 
 **Introduction:**
 
