@@ -7,8 +7,9 @@ MSSA CAD
 
 January 23, 2021
 
-### Project Step 2
 
+### Project Step 2
+---
 **Introduction:**
 
 RecipeHelp started originally one night when I had no idea what I wanted to make for dinner.  I had a handful of ingredients, but I knew of no recipes with which to form them into anything that was dinner worthy.  I thought if only I had an app that I could input ingredients into and get a list of great recipes that I could make from the ingredients. The RecipeHelp application will help a cook in need of fresh ideas by providing recipes from different cuisines, complexities and difficulties based on ingredients on hand.
