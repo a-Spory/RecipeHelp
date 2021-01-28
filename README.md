@@ -1,7 +1,7 @@
 # RecipeHelp
 Need help with dinner ideas? Get it here
 
-<div style="text-align: right">Alexander Spory</div>
+<div style="text-align: justify">Alexander Spory</div>
 MSSA CAD
 January 23, 2021
 Project Step 2
