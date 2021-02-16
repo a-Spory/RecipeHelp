@@ -29,3 +29,7 @@ The user will be able to upload custom recipes to the database via the GUI.   Th
 **Shopping Cart:**
 
 If the user is presented with a recipe that requires more ingredients than the amount they input previously, they will have the option to add the extra ingredients to a virtual cart.  This cart will be available to the user when shopping for the necessary ingredients and will be available for download in the case of offline access.
+
+**Link to Database Diagram:**
+
+https://github.com/a-Spory/RecipeHelp/blob/main/RecipeHelp%20Database%20Diagram.pdf
