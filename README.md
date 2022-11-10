@@ -10,6 +10,11 @@ January 23, 2021
 
 ### Project Step 2
 ---
+
+**Edit**
+
+To date I have not been able to add the ingredient input or the shopping cart functionality. However the user account and recipe sharing functionality is complete.
+
 **Introduction:**
 
 RecipeHelp started originally one night when I had no idea what I wanted to make for dinner.  I had a handful of ingredients, but I knew of no recipes with which to form them into anything that was dinner worthy.  I thought if only I had an app that I could input ingredients into and get a list of great recipes that I could make from the ingredients. The RecipeHelp application will help a cook in need of fresh ideas by providing recipes from different cuisines, complexities and difficulties based on ingredients on hand.
@@ -33,7 +38,3 @@ If the user is presented with a recipe that requires more ingredients than the a
 **Link to Database Diagram:**
 
 https://github.com/a-Spory/RecipeHelp/blob/main/RecipeHelp%20Database%20Diagram.pdf
-
-**Edit**
-
-To date I have not been able to add the ingredient input or the shopping cart functionality. However the user account and recipe sharing functionality is complete.
