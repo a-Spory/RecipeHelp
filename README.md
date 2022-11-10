@@ -33,3 +33,7 @@ If the user is presented with a recipe that requires more ingredients than the a
 **Link to Database Diagram:**
 
 https://github.com/a-Spory/RecipeHelp/blob/main/RecipeHelp%20Database%20Diagram.pdf
+
+**Edit**
+
+To date I have not been able to add the ingredient input or the shopping cart functionality. However the user account and recipe sharing functionality is complete.
