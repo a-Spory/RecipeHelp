@@ -1,0 +1,72 @@
+﻿@model RecipeHelp.Models.ViewModels.UserRegistrationViewModel
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="~/Bootstrap5/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">RecipeHELP</a>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <form class="d-flex ms-auto">
+                    <input class="form-control me-2" type="search" name="keyword" id="recipe search" placeholder="search recipes..." aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit" asp-controller="Home" asp-action="SearchResults">GO</button>
+                </form>
+                <ul class="navbar-nav mb-2 mb-md-0 ms-lg-5">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Home" asp-action="ResetPassword">Reset Password</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <h1 class="ms-xxl-4">Register Here:</h1>
+    <br />
+    <div class="ms-xxl-5">
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="All"></div>
+            <div class="mb-3 col-md-2">
+                <label class="form-label" asp-for="UserName">New Username:</label>
+                <input class="form-control" type="text" asp-for="UserName" />
+            </div>
+            <div class="mb-3 col-md-2">
+                <label class="form-label" asp-for="Password">New Password:</label>
+                <input class="form-control" type="password" asp-for="Password" />
+            </div>
+            <div class="mb-3 col-md-2">
+                <label class="form-label" asp-for="VerificationPassword">Retype Password:</label>
+                <input class="form-control" type="password" asp-for="VerificationPassword" />
+            </div>
+            <div class="mb-3 col-md-2">
+                <label class="form-label" asp-for="Name">Name:</label>
+                <input class="form-control" type="text" asp-for="Name" />
+            </div>
+            <div class="mb-3 col-md-2">
+                <label class="form-label" asp-for="Email">Email:</label>
+                <input class="form-control" type="email" asp-for="Email" aria-describedby="emailHelp" />
+                <div id="emailHelp" class="form-text">
+                    We'll never share your email with anyone else.
+                </div>
+            </div>
+            <br />
+            <button class="btn btn-success" type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>

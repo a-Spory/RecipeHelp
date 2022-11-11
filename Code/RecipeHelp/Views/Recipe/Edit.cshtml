@@ -1,0 +1,121 @@
+﻿@model Recipe
+@inject IUserRepo _userRepo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Bootstrap5/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <title> Edit Recipe </title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">RecipeHELP</a>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <form class="d-flex ms-auto">
+                    <input class="form-control me-2" type="search" name="keyword" id="recipe search" placeholder="search recipes..." aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit" asp-controller="Home" asp-action="SearchResults">GO</button>
+                </form>
+                <ul class="navbar-nav mb-2 mb-md-0 ms-lg-5">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="Index">@_userRepo.GetLoggedInUserName()</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="ResetPassword">Reset Password</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="Logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <div class="container-fluid">
+        <h1>Recipe Form:</h1>
+        </h5>
+        <form asp-action="Edit" class="m-2" method="post">
+            <div asp-validation-summary="All"></div>
+            <div class="form-group" style="width: 200px">
+                <label asp-for="Name"> Recipe Name: </label>
+                <input asp-for="Name" class="form-control" placeholder="Clam Chowder" />
+            </div>
+            <div class="form-group" style="width:75px">
+                <label asp-for="Cooktime"> Cooktime(mins): </label>
+                <input asp-for="Cooktime" class="form-control" type="number" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Ingredients"> Ingredients: </label>
+                <textarea style="height:100px; width:350px;" asp-for="Ingredients" class="form-control" placeholder="Turnips">
+            </textarea>
+            </div>
+            <div class="form-group">
+                Budget:
+                <br />
+                @{ String[] budgetArray = { "Cheap", "Expensive" };
+                    foreach (String choice in budgetArray)
+                    {
+                        <input name="Budget" type="radio" value="@choice" /> @choice<br />
+                    }
+                }
+            </div>
+            <div class="form-group">
+                Difficulty:
+                <br />
+                @{ String[] diffArray = { "Easy", "Medium", "Hard" };
+                    foreach (String choice in diffArray)
+                    {
+                        <input name="Difficulty" type="radio" value="@choice" /> @choice<br />
+                    }
+                }
+            </div>
+            <div class="form-group">
+                Course:
+                <br />
+                @{ String[] courseArray = { "Breakfast", "Lunch", "Dinner", "Snack" };
+                    foreach (String choice in courseArray)
+                    {
+                        <input name="Course" type="radio" value="@choice" /> @choice<br />
+                    }
+                }
+            </div>
+            <div class="form-group" style="width: 200px">
+                <label asp-for="Cuisine"> Cuisine: </label>
+                <input asp-for="Cuisine" class="form-control" placeholder="Italian" />
+            </div>
+            <div class="form-group">
+                Diet:
+                <br />
+                @{ String[] dietArray = { "Omni", "Vegetarian", "Vegan", "Paleo", "Other" };
+                    foreach (String choice in dietArray)
+                    {
+                        if (choice.Equals("Other"))
+                        {
+                            <label asp-for="Diet"> Other: </label>
+                            <input style="width: 200px" asp-for="Diet" class="form-control" />
+                        }
+                        else
+                        {
+                            <input name="Diet" type="radio" value="@choice" /> @choice<br />
+                        }
+                    }
+                }
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary"> Save Recipe!! </button>
+            <button class="btn btn-success" asp-action="Details" formmethod="get" asp-route-id="@Model.Id">
+                Cancel
+            </button>
+        </form>
+    </div>
+</body>
+</html>

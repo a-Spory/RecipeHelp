@@ -1,0 +1,54 @@
+﻿@model Recipe
+@inject IUserRepo _userRepo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Bootstrap5/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <title> Recipes </title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">RecipeHELP</a>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <form class="d-flex ms-auto">
+                    <input class="form-control me-2" type="search" name="keyword" id="recipe search" placeholder="search recipes..." aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit" id="recipe search button">GO</button>
+                </form>
+                <ul class="navbar-nav mb-2 mb-md-0 ms-lg-5">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="Index">@_userRepo.GetLoggedInUserName()</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="ResetPassword">Reset Password</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="Logout">Logout</a>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <div class="container-fluid">
+        <h3> @Model.Name </h3>
+        <h1> Are you sure you want to delete? </h1>
+        <form method="post">
+            <button type="submit" class="btn btn-danger" asp-controller="Recipe" asp-action="Delete"> Delete </button>
+            <button class="btn btn-success" asp-action="Details" formmethod="get" asp-route-id="@Model.Id">
+                Cancel
+            </button>
+        </form>
+    </div>
+</body>
+</html>

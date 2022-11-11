@@ -1,0 +1,157 @@
+﻿@model User
+@inject IRecipeRepo _recipe
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="~/Bootstrap5/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">RecipeHELP</a>
+            <div id="navbarCollapse" class="collapse navbar-collapse d-flex justify-content-end">
+                <form class="d-flex ms-auto">
+                    <input class="form-control me-2" type="search" name="keyword" id="recipe search" placeholder="search recipes..." aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit" asp-controller="Home" asp-action="SearchResults">GO</button>
+                </form>
+                <ul class="navbar-nav ms-lg-5 mb-2 mb-md-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="ResetPassword">Reset Password</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="Logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <h1>Hello @Model.Name!</h1>
+                <br />
+                <br />
+                <hr />
+                <h4>Recipes you've shared:</h4>
+                @_recipe.GetNumRecipesSharedByUser(Model.Id)
+            </div>
+            <br />
+            <div class="col-sm">
+                <h1>Advanced Recipe Search:</h1>
+                <br />
+                <form class="g-3" asp-controller="User" asp-action="AdvancedSearchResults" method="get">
+                    <input class="form-control me-2" type="search" name="keyword" id="recipe search" placeholder="search recipes..." aria-label="Search" />
+                    <br />
+                    Filter By:
+                    <br />
+                    <div class="form-group" style="width:75px">
+                        <label>Cooktime(mins): </label>
+                        <input name="cooktime" class="form-control" type="number" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label>Budget:</label>
+                        <br />
+                        @{ String[] budgetArray = { "Cheap", "Expensive" };
+                            foreach (String choice in budgetArray)
+                            {
+                                <input name="budget" type="checkbox" class="form-check-input" value="@choice" /> @choice<br />
+                            }
+                        }
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label>Difficulty:</label>
+                        <br />
+                        @{ String[] diffArray = { "Easy", "Medium", "Hard" };
+                            foreach (String choice in diffArray)
+                            {
+                                <input name="difficulty" type="checkbox" class="form-check-input" value="@choice" /> @choice<br />
+                            }
+                        }
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label>Course:</label>
+                        <br />
+                        @{ String[] courseArray = { "Breakfast", "Lunch", "Dinner", "Snack" };
+                            foreach (String choice in courseArray)
+                            {
+                                <input name="course" type="checkbox"
+                                  class="form-check-input" value="@choice" /> @choice<br />
+                            }
+                        }
+                    </div>
+                    <br />
+                    <div class="form-group" style="width: 200px">
+                        <label> Cuisine: </label>
+                        <input name="cuisine" class="form-control" placeholder="American" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label>Diet:</label>
+                        <br />
+                        @{ String[] dietArray = { "Omni", "Vegetarian", "Vegan", "Paleo", "Other" };
+                            foreach (String choice in dietArray)
+                            {
+                                if (choice.Equals("Other"))
+                                {
+                                    <label> Other: </label>
+                                    <input style="width: 200px" name="diet" class="form-control" />
+                                }
+                                else
+                                {
+                                    <input name="diet" type="checkbox" class="form-check-input" value="@choice" /> @choice<br />
+                                }
+                            }
+                        }       
+                    </div>
+                    <br />
+                    <button class="btn btn-outline-success" type="submit">GO</button>
+                </form>    
+            </div>
+            <br />
+            <div class="col-sm">
+                <div>
+                    <hr />
+                    <h1>Add A Recipe of Your Own!</h1>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-success" asp-controller="Recipe" asp-action="Add">Add Recipe</a>
+                    </div>
+                    <hr />
+                    <br />
+                    <br />
+                    <h3>OR</h3>
+                    <br />
+                    <br />
+                    <hr />
+                    <h1>See Recipes You've Added</h1>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-primary" asp-controller="Recipe" asp-action="UserRecipes" asp-route-id="@Model.Id">Your Recipes</a>
+                    </div>
+                    <hr />
+                    <br />
+                    <br />
+                    <h3>OR</h3>
+                    <br />
+                    <br />
+                    <div>
+                        <a class="btn btn-info" asp-action="Index" asp-controller="Recipe">Browse All Recipes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

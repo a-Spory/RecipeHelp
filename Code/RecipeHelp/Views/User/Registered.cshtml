@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Registered";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" content="width=device-width, initial-scale=1.0">
+    <title>Registered!</title>
+    <link href="~/Bootstrap5/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">RecipeHELP</a>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <form class="d-flex ms-auto">
+                    <input class="form-control me-2" type="search" name="keyword" id="recipe search" placeholder="search recipes..." aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit" asp-controller="Home" asp-action="SearchResults">GO</button>
+                </form>
+                <ul class="navbar-nav ms-lg-5 mb-2 mb-md-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Home" asp-action="ResetPassword">Reset Password</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <h1>Congrats You've Registered!!</h1>
+</body>
+</html>

@@ -1,0 +1,80 @@
+﻿@model IQueryable<Recipe>
+@inject IUserRepo _userRepo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Bootstrap5/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <title> Results </title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">RecipeHELP</a>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <form class="d-flex ms-auto">
+                    <input class="form-control me-2" type="search" name="keyword" id="recipe search" placeholder="search recipes..." aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit" asp-controller="Home" asp-action="SearchResults">GO</button>
+                </form>
+                <ul class="navbar-nav mb-2 mb-md-0 ms-lg-5">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="Index">@_userRepo.GetLoggedInUserName()</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="ResetPassword">Reset Password</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="User" asp-action="Logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <div class="container-fluid">
+        <h1>Your Search Results:</h1>
+        <br />
+        <div>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                @if (Model.Any() == false)
+                {
+                    <div class="container-fluid bg-body">
+                        <span>No Items found</span>
+                    </div>
+                }
+                else
+                {
+                    foreach (Recipe recipe in Model)
+                    {
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    Recipe
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title">
+                                        @recipe.Name
+                                    </h3>
+                                    <p class="card-text">
+                                        An @recipe.Cuisine recipe loved by many. Click below to see some details!
+                                    </p>
+                                    <a class="btn btn-primary" asp-controller="Home" asp-action="RecipeDetails" asp-route-id="@recipe.Id">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
